@@ -13,7 +13,8 @@ namespace NAMLegacyEndpoint.GraphQL
         public NAMLegacyQuery(NAMLegacyData data)
         {
             Name = "Query";
-
+            
+            //endpoint: /orders 
             Field<ListGraphType<OrderType>> (
                 "orders",
                 arguments: new QueryArguments (
@@ -39,6 +40,7 @@ namespace NAMLegacyEndpoint.GraphQL
                 }
             );
 
+            //endpoint: /orders/{id} 
             Field<OrderType>(
                "order",
                arguments: new QueryArguments(
