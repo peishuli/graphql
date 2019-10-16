@@ -10,7 +10,7 @@ namespace NAMLegacyEndpoint.GraphQL.Types
     {
         public DeliveryEventType()
         {
-            Name = "Delivery Event";
+            Name = "DeliveryEvent";
             Description = "A delivery event";
             Field(f => f.LoadStartedUtc, nullable: true);
             Field(f => f.LoadFinishedUtc, nullable: true);

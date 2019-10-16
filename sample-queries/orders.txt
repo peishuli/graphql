@@ -1,0 +1,136 @@
+query getOrders ($includeDeliveries: Boolean = false) {
+  orders {
+    customer {
+      ...customerData
+    }
+    shippingDateUtc 
+    placedDateUtc
+    shippingAddress {
+      ...siteData
+    }
+    lineItems {    	
+      ...lineItemsdData
+    },
+    supplementItems {
+      ...supplementItemsData
+    },
+    schedules {
+      ...scheduleData
+    },
+    deliveries @include(if: $includeDeliveries) {
+      #deliveryStatus,
+      deliveryEvents{
+        ...deliveryEventData
+      },
+      linkedDocuments {
+        ...linedDocumentData
+      },
+      links {
+        ...linkData
+      }
+    },
+    shippingType
+    shippingDateUtc
+		deliveryProgress {			
+      ...deliveryProgressData
+		}
+    orderId
+    orderNumber
+    customerId
+    projectNumber
+    projectId
+    #truckId
+    #truckName
+    #plantId
+    #plantName
+    #loadQuantity
+    #loadQuantityUom
+  }
+}
+
+fragment customerData on Customer {
+  customerId
+  customerNumber
+  customerName
+}
+
+fragment siteData on Site {
+  siteId
+  siteNumber
+  customerId
+  siteName
+  street
+  postalCode
+  city
+  state
+  country
+}
+
+fragment lineItemsdData on LineItem {
+	materialCharacteristics {
+    ...materialCharacteristicData
+  }
+  itemNumber
+      materialNumber
+    	materialDescription
+      customerMaterialDescription
+      quantity
+      quantityUom
+}
+
+fragment supplementItemsData on SupplementItem {
+  relatedItemNumber
+  itemNumber
+  itemName
+  quantity
+  quantityUom
+}
+
+fragment scheduleData on Schedule {
+  scheduleStartDateUtc
+  scheduleEndDateUtc
+  arrivalSpacing
+  scheduleQuantity
+  quantityChangeExpected
+  holdQuantity
+  quantityPerHour
+}
+
+fragment deliveryEventData on DeliveryEvent {
+  loadStartedUtc
+  loadFinishedUtc
+  arrivedUtc
+  unloadStartedUtc
+  unloadFinishedUtc
+}
+
+fragment linedDocumentData on LinkedDocument {
+  documentId
+  contentType
+  documentType
+}
+
+fragment linkData on Link {
+  href
+  media
+  type
+  rel
+}
+
+fragment deliveryProgressData on DeliveryProgress {
+  shippedDeliveries
+	shippedQuantity
+	arrivedDeliveries
+	deliveredDeliveries
+	deliveredQuantity
+}
+
+fragment materialCharacteristicData on MaterialCharacteristic {
+	materialCharacteristicCode,  
+  materialCharacteristicDescription
+}
+
+---
+{
+  "includeDeliveries": true
+}

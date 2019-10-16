@@ -10,7 +10,7 @@ namespace NAMLegacyEndpoint.GraphQL.Types
     {
         public DeliveryProgressType()
         {
-            Name = "Delivery Progress";
+            Name = "DeliveryProgress";
             Description = "Delivery progress";
             Field(d => d.ShippedDeliveries, nullable: true);
             Field(d => d.ShippedQuantity, nullable: true, type: typeof(FloatGraphType));

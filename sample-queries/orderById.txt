@@ -1,0 +1,98 @@
+# Write your query or mutation here
+query getOrderById ($orderId: String!) {
+  order (orderId: $orderId) {
+    customer {
+      customerId
+      customerNumber
+      customerName
+    }
+    shippingDateUtc
+    placedDateUtc
+    shippingAddress {
+      siteId
+      siteNumber
+      customerId
+      siteName
+      street
+      postalCode
+      city
+      state
+      country
+    }
+    lineItems {
+      materialCharacteristics {
+        materialCharacteristicCode
+        materialCharacteristicDescription
+      }
+      itemNumber
+      materialNumber
+    	materialDescription
+      customerMaterialDescription
+      quantity
+      quantityUom
+    },
+    supplementItems {
+      relatedItemNumber
+      itemNumber
+      itemName
+      quantity
+      quantityUom
+    },
+    schedules {
+      scheduleStartDateUtc
+      scheduleEndDateUtc
+      arrivalSpacing
+      scheduleQuantity
+      quantityChangeExpected
+      holdQuantity
+      quantityPerHour
+    },
+    deliveries {
+      #deliveryStatus,
+      deliveryEvents {
+        loadStartedUtc
+        loadFinishedUtc
+        arrivedUtc
+        unloadStartedUtc
+        unloadFinishedUtc
+      },
+      linkedDocuments {
+        documentId
+        contentType
+        documentType
+      },
+      links {
+        href
+        media
+        type
+        rel
+      }
+    },
+    shippingType
+    shippingDateUtc
+			deliveryProgress {
+			shippedDeliveries
+			shippedQuantity
+			arrivedDeliveries
+			deliveredDeliveries
+			deliveredQuantity
+			}
+    orderId
+    orderNumber
+    customerId
+    projectNumber
+    projectId
+    #truckId
+    #truckName
+    #plantId
+    #plantName
+    #loadQuantity
+    #loadQuantityUom
+  }
+}
+
+
+---
+{
+  "orderId": "01e32844-579d-4db6-8fe9-1fa42f8688e9"
+}

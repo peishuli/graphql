@@ -1,0 +1,107 @@
+query getOrders (
+  $startDate: Date,
+  $endDate: Date,
+  $siteId: String, 
+  $projectId: String
+) {
+  orders (
+    startDate: $startDate,
+    endDate: $endDate,
+    siteId: $siteId, 
+    projectId: $projectId
+  ) {
+    customer {
+      customerId
+      customerNumber
+      customerName
+    }
+    shippingDateUtc
+    placedDateUtc
+    shippingAddress {
+      siteId
+      siteNumber
+      customerId
+      siteName
+      street
+      postalCode
+      city
+      state
+      country
+    }
+    lineItems {
+      materialCharacteristics {
+        materialCharacteristicCode
+        materialCharacteristicDescription
+      }
+      itemNumber
+      materialNumber
+    	materialDescription
+      customerMaterialDescription
+      quantity
+      quantityUom
+    },
+    supplementItems {
+      relatedItemNumber
+      itemNumber
+      itemName
+      quantity
+      quantityUom
+    },
+    schedules {
+      scheduleStartDateUtc
+      scheduleEndDateUtc
+      arrivalSpacing
+      scheduleQuantity
+      quantityChangeExpected
+      holdQuantity
+      quantityPerHour
+    },
+    deliveries {
+      #deliveryStatus,
+      deliveryEvents {
+        loadStartedUtc
+        loadFinishedUtc
+        arrivedUtc
+        unloadStartedUtc
+        unloadFinishedUtc
+      },
+      linkedDocuments {
+        documentId
+        contentType
+        documentType
+      },
+      links {
+        href
+        media
+        type
+        rel
+      }
+    },
+    shippingType
+    shippingDateUtc
+			deliveryProgress {
+			shippedDeliveries
+			shippedQuantity
+			arrivedDeliveries
+			deliveredDeliveries
+			deliveredQuantity
+			}
+    orderId
+    orderNumber
+    customerId
+    projectNumber
+    projectId
+    #truckId
+    #truckName
+    #plantId
+    #plantName
+    #loadQuantity
+    #loadQuantityUom
+  }
+}
+
+---
+{
+  "siteId": "31360898",
+  "projectId": "166d01b3-1627-4481-8685-011e1c232553"
+}

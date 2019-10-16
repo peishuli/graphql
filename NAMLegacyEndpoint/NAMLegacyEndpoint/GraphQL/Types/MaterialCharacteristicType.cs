@@ -10,7 +10,7 @@ namespace NAMLegacyEndpoint.GraphQL.Types
     {
         public MaterialCharacteristicType()
         {
-            Name = "Material Characteristic";
+            Name = "MaterialCharacteristic";
             Description = "Material characteristic";
             Field(m => m.MaterialCharacteristicCode, nullable: true);
             Field(m => m.MaterialCharacteristicDescription, nullable: true);

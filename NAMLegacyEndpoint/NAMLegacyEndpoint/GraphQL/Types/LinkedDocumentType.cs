@@ -10,7 +10,7 @@ namespace NAMLegacyEndpoint.GraphQL.Types
     {
         public LinkedDocumentType()
         {
-            Name = "Linked Document";
+            Name = "LinkedDocument";
             Description = "a lined document";
             Field(l => l.DocumentId, nullable: false);
             Field(l => l.ContentType, nullable: true);
