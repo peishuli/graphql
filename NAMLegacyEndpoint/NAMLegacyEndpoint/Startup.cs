@@ -55,8 +55,8 @@ namespace NAMLegacyEndpoint
             
             
             services.AddSingleton<DeliveryProgressType>();
-            
-            
+
+            services.AddSingleton<EnumerationGraphType>();
 
             services.AddSingleton<ISchema, NAMLegacySchema>();
 
